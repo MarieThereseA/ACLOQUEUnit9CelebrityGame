@@ -15,7 +15,7 @@ import javax.swing.SpringLayout;
  * @author cody.henrichsen
  * @version 2.1 18/09/2018 Refactored away validation to controller.
  */
-public class StartPanel extends JPanel {
+public class StartPanel extends JPanel implements ActionListener {
   /**
    * Reference to the Game to call methods.
    */
@@ -98,17 +98,66 @@ public class StartPanel extends JPanel {
    */
   public StartPanel(CelebrityGame controllerRef) {
     super();
+    controller = controllerRef;
+    panelLayout = new SpringLayout();
+    typeGroup = new ButtonGroup();
+    celebrityRadio = new JRadioButton("Celebrity");
+    celebrityClue = "Enter the clue for the celebrity";
+    clueLabel = new JLabel(celebrityClue);
+
+    answerField = new JTextField("Type celebrity here (4 letters min)");
+    clueField = new JTextField("Enter celebrity clue here (10 letters min)");
+    addCelebrityButton = new JButton("Add current celebrity");
+    startButton = new JButton("Start Celebrity game");
+    celebrityCount = 0;
+    countLabelText = "Current Celebrity Count: " + celebrityCount;
+    celebrityCountLabel = new JLabel(countLabelText);
+
+    // these setup methods are defined below
+    setupPanel();
+    setupLayout();
+    setupListeners();
+  }
+
+  public void actionPerformed(ActionEvent ae){
+    Object source = ae.getSource();
+    JButton button = (JButton)source;
+    if (button.getText().equals("Add current celebrity")){
+      // when "add celebrity" button gets clicked:
+      answerField.setBackground(Color.WHITE);
+      clueField.setBackground(Color.WHITE);
+      if (validate(answerField.getText(), clueField.getText())) {
+        addToGame();
+      } else {
+        invalidInput();
+      }
+      celebrityCount = controller.getCelebrityGameSize();
+      celebrityCountLabel.setText(countLabelText + celebrityCount);
+    }else if (button.getText().equals("Start Celebrity game")){
+      controller.play();
+    }
 
   }
-  
+
   /**
    * Adds all components to the StartPanel and uses the SpringLayout variable,
    * panelLayout, as the layout manager.
    */
   private void setupPanel() {
+    setLayout(panelLayout);
+    add(clueLabel);
+    add(celebrityRadio);
+    add(answerField);
+    add(clueField);
+    add(startButton);
+    add(celebrityCountLabel);
+    add(addCelebrityButton);
 
-  }
-  
+    celebrityRadio.setSelected(true);
+    startButton.setEnabled(false);
+    typeGroup.add(celebrityRadio);
+   }
+
   /**
    * Uses the Springlayout constraint system to place all GUI components on
    * screen. All constraints grouped together to keep code clean and
@@ -119,32 +168,33 @@ public class StartPanel extends JPanel {
     panelLayout.putConstraint(SpringLayout.NORTH, celebrityRadio, 15, SpringLayout.NORTH, this);
     panelLayout.putConstraint(SpringLayout.WEST, celebrityRadio, 15, SpringLayout.WEST, this);
     panelLayout.putConstraint(SpringLayout.EAST, addCelebrityButton, 0, SpringLayout.EAST, startButton);
-    panelLayout.putConstraint(SpringLayout.NORTH, addCelebrityButton, 20, SpringLayout.SOUTH, clueField);
+    panelLayout.putConstraint(SpringLayout.NORTH, addCelebrityButton, 50, SpringLayout.SOUTH, clueField);
     panelLayout.putConstraint(SpringLayout.WEST, addCelebrityButton, 0, SpringLayout.WEST, celebrityRadio);
-    
+
     panelLayout.putConstraint(SpringLayout.NORTH, startButton, 20, SpringLayout.SOUTH, addCelebrityButton);
-    panelLayout.putConstraint(SpringLayout.NORTH, celebrityCountLabel, 0, SpringLayout.NORTH, celebrityRadio);
-    panelLayout.putConstraint(SpringLayout.EAST, celebrityCountLabel, -45, SpringLayout.EAST, this);
-    
+    panelLayout.putConstraint(SpringLayout.NORTH, celebrityCountLabel, 25, SpringLayout.NORTH, celebrityRadio);
+    panelLayout.putConstraint(SpringLayout.EAST, celebrityCountLabel, -50, SpringLayout.EAST, this);
+
     //Put your custom radio button info here
-       
+
     panelLayout.putConstraint(SpringLayout.NORTH, clueLabel, 10, SpringLayout.SOUTH, answerField);
     panelLayout.putConstraint(SpringLayout.NORTH, answerField, 40, SpringLayout.SOUTH, celebrityRadio);
     panelLayout.putConstraint(SpringLayout.WEST, answerField, 0, SpringLayout.WEST, celebrityRadio);
     panelLayout.putConstraint(SpringLayout.EAST, answerField, -15, SpringLayout.EAST, this);
-    
+
     panelLayout.putConstraint(SpringLayout.WEST, clueField, 0, SpringLayout.WEST, celebrityRadio);
     panelLayout.putConstraint(SpringLayout.SOUTH, clueField, 55, SpringLayout.SOUTH, answerField);
     panelLayout.putConstraint(SpringLayout.EAST, clueField, 0, SpringLayout.EAST, answerField);
     panelLayout.putConstraint(SpringLayout.WEST, startButton, 0, SpringLayout.WEST, celebrityRadio);
     panelLayout.putConstraint(SpringLayout.EAST, startButton, 0, SpringLayout.EAST, answerField);
   }
-  
+
   /**
    * Used to link all Listeners to the associated GUI components.
    */
   private void setupListeners() {
-    
+    addCelebrityButton.addActionListener(this);
+    startButton.addActionListener(this);
   }
 
 
