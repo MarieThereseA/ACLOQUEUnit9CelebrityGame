@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * The framework for the Celebrity Game project
@@ -42,7 +43,18 @@ public class CelebrityGame {
 	 *         spaces.
 	 */
 	public boolean processGuess(String guess) {
-		return false; // stub
+		guess = guess.toLowerCase().trim();
+		String answer = gameCelebrity.getAnswer().toLowerCase().trim();
+		boolean isCorrect = guess.equals(answer);
+		if (isCorrect){
+			celebGameList.remove(0);
+			if (celebGameList.size() == 0){
+				gameCelebrity = new Celebrity("","");
+			}else{
+				gameCelebrity = celebGameList.get(0);
+			}
+		}
+		return isCorrect;
 	}
 
 	/**

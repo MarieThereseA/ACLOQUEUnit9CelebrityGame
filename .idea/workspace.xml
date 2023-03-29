@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="535eb673-6e51-4a54-a012-0e8ac5fae8bc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="535eb673-6e51-4a54-a012-0e8ac5fae8bc" name="Changes" comment="tuesday">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Celebrity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Celebrity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CelebrityFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CelebrityFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CelebrityGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CelebrityGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CelebrityPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CelebrityPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CelebrityRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CelebrityRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StartPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StartPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,13 +23,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/student/IdeaProjects/ACLOQUEUnit9CelebrityGame"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/student/IdeaProjects/ACLOQUEUnit9CelebrityGame&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\student\IdeaProjects\ACLOQUEUnit9CelebrityGame\src" />
@@ -63,6 +58,14 @@
       <option name="presentableId" value="Default" />
       <updated>1679930628925</updated>
     </task>
+    <task id="LOCAL-00001" summary="tuesday">
+      <created>1680021262035</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1680021262035</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -75,5 +78,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="tuesday" />
+    <option name="LAST_COMMIT_MESSAGE" value="tuesday" />
   </component>
 </project>

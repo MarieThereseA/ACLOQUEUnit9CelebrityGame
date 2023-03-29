@@ -110,6 +110,7 @@ public class CelebrityPanel extends JPanel implements ActionListener {
     success = "You guessed correctly!!! \nNext Celebrity clue is: ";
     tryAgain = "You have chosen poorly, try again!\nThe clue is: ";
     seconds = 60;
+    countdownTimer = new Timer(1000, null);
 
     setupPanel();
     setupLayout();
@@ -119,9 +120,14 @@ public class CelebrityPanel extends JPanel implements ActionListener {
 
   public void actionPerformed(ActionEvent ae){
     Object source = ae.getSource();
-    JButton button = (JButton) source;
-    String buttonText = button.getText();
-    if (buttonText.equals("Submit guess")){
+    String text = "";
+    if (source instanceof JButton){
+      JButton button = (JButton) source;
+      text = button.getText();
+    }else {
+      timerFires();
+    }
+    if (text.equals("Submit guess")){
       updateScreen();
     }
   }
@@ -188,6 +194,7 @@ public class CelebrityPanel extends JPanel implements ActionListener {
    */
   private void setupListeners() {
     guessButton.addActionListener(this);
+    countdownTimer.addActionListener(this);
   }
   
   /**
@@ -196,7 +203,12 @@ public class CelebrityPanel extends JPanel implements ActionListener {
    * the end.
    */
   private void timerFires() {
-
+    seconds--;
+    dynamicTimerLabel.setText("" + seconds);
+    if (seconds == 0){
+      countdownTimer.stop();
+      staticTimerLabel.setText("Times Up!");
+    }
   }
   
   /**
@@ -206,7 +218,8 @@ public class CelebrityPanel extends JPanel implements ActionListener {
    *            The clue to add to the screen.
    */
   public void addClue(String clue) {
-    clueArea.setText("The clue is: " + clue);
+    clueArea.append("\nThe clue is: " + clue);
+    countdownTimer.start();
   }
   
   /**
@@ -214,6 +227,23 @@ public class CelebrityPanel extends JPanel implements ActionListener {
    * to provide the same functionality.
    */
   private void updateScreen() {
+    String guess = guessField.getText();
+    clueArea.append("\nYou Guessed: " + guess);
+    if (controller.processGuess(guess)){
+      clueArea.setBackground(Color.CYAN);
+      clueArea.append("\n" + success);
+      addClue(controller.sendClue());
+    }else {
+      clueArea.setBackground(Color.WHITE);
+      clueArea.append("\n" + tryAgain);
+      addClue(controller.sendClue());
+    }
+    if (controller.getCelebrityGameSize() == 0){
+      clueArea.append("\nNo more celebrities to guess.");
+      guessButton.setEnabled(false);
+      guessField.setEnabled(false);
+    }
+
 
   }
 }
