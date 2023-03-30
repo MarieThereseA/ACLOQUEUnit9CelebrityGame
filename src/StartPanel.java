@@ -128,6 +128,8 @@ public class StartPanel extends JPanel implements ActionListener {
       clueField.setBackground(Color.WHITE);
       if (validate(answerField.getText(), clueField.getText())) {
         addToGame();
+        answerField.setText("");
+        clueField.setText("");
       } else {
         invalidInput();
       }
@@ -137,6 +139,12 @@ public class StartPanel extends JPanel implements ActionListener {
       controller.play();
     }
 
+  }
+
+  public void reset(){
+    celebrityCount = 0;
+    celebrityCountLabel.setText("Current Celebrity Count: " + celebrityCount);
+    startButton.setEnabled(false);
   }
 
   /**

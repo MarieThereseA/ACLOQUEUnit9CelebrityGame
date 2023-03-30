@@ -1,6 +1,7 @@
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * GUI Frame class for the Celebrity Game
@@ -42,6 +43,19 @@ public class CelebrityFrame extends JFrame {
 		setupFrame();
 
 	}
+/*
+	public void actionPerformed(ActionEvent ae){
+		Object source = ae.getSource();
+		JButton button = (JButton) source;
+		System.out.println(button instanceof JButton);
+		String text = button.getText();
+		System.out.println(text);
+		if (text.equals("Start again")){
+			reset();
+			System.out.println("START AGAIN PRESSED!!!");
+		}
+	}
+*/
 	
 	/**
 	 * Configures the JFrame window subclass to add the panel and set size based information.
@@ -65,6 +79,14 @@ public class CelebrityFrame extends JFrame {
 		// must be the last line of the configuration to allow the GUI to be displayed.
 		// If not set as true the window will not display and the app will terminate.
 		setVisible(true);
+	}
+
+	public void reset(){
+		controller.reset();
+		startPanel.reset();
+		gamePanel.reset();
+		replaceScreen("START");
+		System.out.println("RESET!!!");
 	}
 	
 	/**

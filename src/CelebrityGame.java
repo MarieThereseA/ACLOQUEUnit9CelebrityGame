@@ -118,4 +118,14 @@ public class CelebrityGame {
 	public String sendClue() {
 		return gameCelebrity.getClue();
 	}
+
+	public void reset(){
+		while (celebGameList.size() > 0){
+			celebGameList.remove(0);
+		}
+	}
+
+	public CelebrityFrame getFrame(){
+		return gameWindow;
+	}
 }
